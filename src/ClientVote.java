@@ -16,7 +16,12 @@ public class ClientVote extends UnicastRemoteObject implements Electeur {
     public void recevoirResultats(Map<String, Integer> scor) throws RemoteException {
         System.out.println("\n=== RÉSULTATS EN DIRECT ===");
         for(String key : scor.keySet()) {
-            System.out.println("  * " + key + " : " + scor.get(key) + " votes");
+            int numVote = scor.get(key);
+            if (numVote<=1) {
+                System.out.println("  * " + key + " : " + numVote + " vote");
+            }else{
+                System.out.println("  * " + key + " : " + numVote + " votes");
+            }
         }
         System.out.println("===========================");
         System.out.print("Votez a votre candidate: ");
